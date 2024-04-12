@@ -1,0 +1,30 @@
+{% extends 'default.html' %}
+{% block title %} Login {% endblock %}
+   
+
+     
+{% block content %}
+<h1>Connexion</h1>
+<div class="container">
+  {% if message=='error'%}
+  <p class="alert alert-danger">Tout les champs sont obligatoires !</p>
+  {% elif  utilisateur==None and message=='Success' %}
+  <p class="alert alert-warning">Nom d'utilisateur ou mot de passe incorrect.</p>
+  {% elif message=='Error' %}
+  <p class="alert alert-danger"> Serveur inaccessible, contacter Abdou.</p>
+  {%endif%}
+</div>
+<form action="{{url_for('login')}}" method="POST">
+    <div class="mb-3">
+      <label for="username" class="form-label">Nom d'utilisateur</label>
+      <input name="username" type="text" class="form-control" id="username" aria-describedby="username">
+      <div id="username" class="form-text">We'll never share your username with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="mdp" class="form-label">Password</label>
+      <input name="mdp" type="password" class="form-control" id="mdp">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
